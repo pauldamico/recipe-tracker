@@ -1,12 +1,12 @@
 const express = require('express')
+require('dotenv').config()
 const morgan = require('morgan')
 const mongoose = require('mongoose')
 const app = express()
-
 app.use(express.json())
 app.use(morgan('dev'))
 
-mongoose.connect('mongodb://localhost:27017/mealplandb', console.log("Connected to Database"))
+mongoose.connect(`mongodb+srv://recipedb:${process.env.DBLOGIN}@cluster0.xkjsggd.mongodb.net/?retryWrites=true&w=majority`, console.log("Connected to Database"))
 
 
 app.get('/', (req, res)=>{    
