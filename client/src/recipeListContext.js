@@ -53,8 +53,8 @@ function RecipeListContextProvider(props) {
 
   //THIS GETS THE USER/RECIPEINFO WHEN STARTING
   useEffect(() => {                                                          
-    axios.get("/users").then((res) => setUsers((prev) => res.data));
-    axios.get("/recipes").then((res) => setSavedRecipes(res.data));
+    axios.get("https://mealplanner-backend.onrender.com/users").then((res) => setUsers((prev) => res.data));
+    axios.get("https://mealplanner-backend.onrender.com/recipes").then((res) => setSavedRecipes(res.data));
     count.current = count.current + 1; 
     }, [])
 
