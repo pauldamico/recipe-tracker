@@ -118,7 +118,7 @@ function RecipeListContextProvider(props) {
       recipeTitle: title,
     };
     axios
-      .post(`/recipes/${userId}`, postedRecipe)
+      .post(`https://mealplanner-backend.onrender.com/recipes/${userId}`, postedRecipe)
       .then((res) => console.log(res.data));
     navigate("/");
   }

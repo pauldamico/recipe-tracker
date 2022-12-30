@@ -67,7 +67,7 @@ export default function MealPlan() {
     const updatedDBInfo = {[dayType]:{title:mealTitle, recipe:rec, img:image}}
 
     axios
-    .put(`/users/${id}`, updatedDBInfo)
+    .put(`https://mealplanner-backend.onrender.com/users/${id}`, updatedDBInfo)
     .then((res) => setCurrentUserInfo(prev=>({...prev, ...res.data})))
     .catch((err) => console.log(err));
   };

@@ -31,7 +31,7 @@ setRecipeToggle(!recipeToggle)
 
   function getUserRecipes() {    
     axios
-      .get(`/recipes/${props.id}`)
+      .get(`https://mealplanner-backend.onrender.com/recipes/${props.id}`)
       .then((res) => setCurrentRecipes(res.data));    
       toggler()
   }

@@ -32,13 +32,13 @@ function SavedRecipes() {
     }
 
     function getRecipeList(userId) {
-        axios.get(`/recipes/${userId}`)
+        axios.get(`https://mealplanner-backend.onrender.com/recipes/${userId}`)
             .then(res => setSavedRecipesList(res.data))
             .catch(err => console.log(err))
     }
 
     function deleteRecipe(recipeId) {
-        axios.delete(`/recipes/${recipeId}`)
+        axios.delete(`https://mealplanner-backend.onrender.com/recipes/${recipeId}`)
             .then(res => {
                 setSavedRecipesList(prevRecipeList => prevRecipeList.filter(recipe => recipe._id !== recipeId))
             })
