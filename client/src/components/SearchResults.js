@@ -4,7 +4,7 @@ import Recipe from "./Recipe";
 import ReactPaginate from "react-paginate"
 
 function SearchResults() {
-    const {listData, handlePageClick, pageCount, recipesPerPage} = useContext(RecipeListContext)
+    const {loading, listData, handlePageClick, pageCount, recipesPerPage} = useContext(RecipeListContext)
 
     let finalPageCount = Math.ceil(pageCount / recipesPerPage)
 
@@ -23,7 +23,9 @@ function SearchResults() {
 
     return (
         <div className="container">
+           {loading && <div className="lds-dual-ring"></div>}
             <div className = "row m-2">
+              
                 {displayList}
                 <div className = "pagination">
                     <ReactPaginate

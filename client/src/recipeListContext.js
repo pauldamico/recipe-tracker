@@ -19,7 +19,7 @@ function RecipeListContextProvider(props) {
   const [listData, setListData] = useState([]);
   const [offset, setOffset] = useState(0);
   const [pageCount, setPageCount] = useState(0);
-
+const [loading, setLoading] = useState(false)
   
   const [formData, setFormData] = useState({
     search: "",
@@ -71,6 +71,7 @@ function RecipeListContextProvider(props) {
   }, [offset])
 
   useEffect(() => {
+ 
     axios
       .get(
         `https://api.spoonacular.com/recipes/complexSearch?query=${formData.search}&cuisine=${formData.cuisine}&diet=${formData.diet}&intolerances=${formData.intolerances}&number=${recipesPerPage}&offset=${offset}&apiKey=${API_KEY}`
@@ -93,12 +94,16 @@ function RecipeListContextProvider(props) {
 
 
   function getSearchResults() {
+    setLoading(true)
     axios
       .get(
         `https://api.spoonacular.com/recipes/complexSearch?query=${formData.search}&cuisine=${formData.cuisine}&diet=${formData.diet}&intolerances=${formData.intolerances}&number=${recipesPerPage}&apiKey=${API_KEY}`
       )
       .then((response) => setListData(response.data.results))
-      .catch((error) => console.log(error));
+      .then(res=>setLoading(false))
+      .catch((error) => {
+        setLoading(false)
+        console.log(error)});
   }
 
   function handleSubmit(event) {
@@ -140,6 +145,7 @@ function RecipeListContextProvider(props) {
   return (
     <RecipeListContext.Provider
       value={{
+        loading,
         users,
         listData,
         formData,
