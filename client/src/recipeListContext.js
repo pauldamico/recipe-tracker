@@ -112,6 +112,7 @@ function RecipeListContextProvider(props) {
 
 
   function saveUserRecipe(userId, recId, img, title) {
+    console.log("test")
     const postedRecipe = {
       recipeId: recId,
       recipeImg: img,

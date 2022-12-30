@@ -12,7 +12,7 @@ const [recipeToggle, setRecipeToggle] = useState(false)
 function toggler (){
   setToggle(!toggle)
 }
-
+console.log(props)
 function showRecipeToggler (){
 setRecipeToggle(!recipeToggle)
 }
@@ -29,7 +29,7 @@ setRecipeToggle(!recipeToggle)
     ></MealPlanUpdate>
   ));
 
-  function getUserRecipes() {    
+  function getUserRecipes() {       
     axios
       .get(`https://mealplanner-backend.onrender.com/recipes/${props.id}`)
       .then((res) => setCurrentRecipes(res.data));    

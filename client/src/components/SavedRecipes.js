@@ -32,6 +32,7 @@ function SavedRecipes() {
     }
 
     function getRecipeList(userId) {
+        
         axios.get(`https://mealplanner-backend.onrender.com/recipes/${userId}`)
             .then(res => setSavedRecipesList(res.data))
             .catch(err => console.log(err))
