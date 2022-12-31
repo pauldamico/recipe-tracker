@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { RecipeListContext } from '../recipeListContext'
 
 function SearchForm() {
-    const { handleChange, formData, handleSubmit } = useContext(RecipeListContext)
+    const { loading, handleChange, formData, handleSubmit } = useContext(RecipeListContext)
 
     return (
         <div className="container">
@@ -73,6 +73,7 @@ function SearchForm() {
                 </div>
                 <br />
                 <br />
+                {loading && <section>Loading</section>}
                 <button className="btn btn-light">Search recipes</button>
             </form>
         </div>

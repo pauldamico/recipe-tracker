@@ -52,9 +52,14 @@ const [loading, setLoading] = useState(false)
 
 
   //THIS GETS THE USER/RECIPEINFO WHEN STARTING
-  useEffect(() => {                                                          
-    axios.get("https://mealplanner-backend.onrender.com/users").then((res) => setUsers((prev) => res.data));
-    axios.get("https://mealplanner-backend.onrender.com/recipes").then((res) => setSavedRecipes(res.data));
+  useEffect(() => {       
+                                                
+    axios.get("https://mealplanner-backend.onrender.com/users").then((res) => setUsers((prev) => res.data)
+ 
+    );
+    axios.get("https://mealplanner-backend.onrender.com/recipes").then((res) => setSavedRecipes(res.data)
+  
+    );
     count.current = count.current + 1; 
     }, [])
 
@@ -94,6 +99,8 @@ const [loading, setLoading] = useState(false)
 
 
   function getSearchResults() {
+
+
     setLoading(true)
     axios
       .get(
@@ -105,12 +112,18 @@ const [loading, setLoading] = useState(false)
         setLoading(false)
         console.log(error)});
   }
-
+console.log(loading)
   function handleSubmit(event) {
+
+   
+    {!loading &&
     event.preventDefault();
     getSearchResults();
     getNumberOfPages();
-    navigate("/returned-recipes");
+    navigate("/returned-recipes");}
+    {loading && console.log("still loading ")}
+
+
     // need to add in here a way to clear the search form back to blank
   }
 
@@ -129,13 +142,17 @@ const [loading, setLoading] = useState(false)
     navigate("/");
   }
 
-  function getRecipeDetails(id) {
+  function getRecipeDetails(id) {  
+    setLoading(true)
     axios
       .get(
         `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=${API_KEY}`
       )
       .then((response) => setOneRecipe(response.data))
-      .catch((error) => console.log(error));
+      .then(res=>setLoading(false))
+      .catch((error) => {
+        setLoading(false)
+        console.log(error)});
   }
 
 

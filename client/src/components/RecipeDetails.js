@@ -2,8 +2,8 @@ import { useContext, useState } from "react";
 import SaveToList from "./SaveToList";
 import { RecipeListContext} from "../recipeListContext";
 function RecipeDetails() {
-  const { oneRecipe, users, saveUserRecipe, count} = useContext(RecipeListContext);
-  const [selectedUser, setSelectedUser] = useState(count.current >= 1 && users[0].name)
+  const {loading, oneRecipe, users, saveUserRecipe, count} = useContext(RecipeListContext);
+  const [selectedUser, setSelectedUser] = useState(count.current >= 1 && users[0]?.name)
   const ingredients = oneRecipe?.extendedIngredients;
   
   const ingredientList = ingredients?.map(function (item) {
@@ -25,8 +25,10 @@ function RecipeDetails() {
   ));
 
   return (
+    
     <div className = "individual-recipe-div">
-      <div className = "individual-recipe-div2">
+     
+      {!loading &&<div className = "individual-recipe-div2">
         <h4 className = "individual-recipe-title">{oneRecipe.title}</h4>
         <p>Servings: {oneRecipe.servings}</p>
         <img className = "individual-recipe-img" src={oneRecipe.image} alt={oneRecipe.tile} />
@@ -51,7 +53,8 @@ function RecipeDetails() {
           <br />
           <button className = "individual-recipe-button" onClick ={saveToRecipeList}>Save to a list</button>
         </div>
-      </div>
+      </div>}
+      {loading && "loading"}
     </div>
   );
 }

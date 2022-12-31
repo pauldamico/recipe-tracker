@@ -9,8 +9,7 @@ function SearchResults() {
     let finalPageCount = Math.ceil(pageCount / recipesPerPage)
 
 
-    console.log(pageCount)
-    console.log(finalPageCount)
+  
 
     const displayList = listData.map(function(recipe) {
         return (
