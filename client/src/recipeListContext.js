@@ -117,7 +117,7 @@ const [loading, setLoading] = useState(false)
         setLoading(false)
         console.log(error)});
   }
-console.log(loading)
+
   function handleSubmit(event) {
 
    
@@ -135,12 +135,16 @@ console.log(loading)
 
 
   function saveUserRecipe(userId, recId, img, title) {
-    console.log("test")
+    setLoading(true)
+
+
     const postedRecipe = {
       recipeId: recId,
       recipeImg: img,
       recipeTitle: title,
     };
+
+
     axios
       .post(`https://mealplanner-backend.onrender.com/recipes/${userId}`, postedRecipe)
       .then((res) => console.log(res.data));
@@ -148,15 +152,20 @@ console.log(loading)
   }
 
   function getRecipeDetails(id) {  
-    setLoading(true)
+    setLoading(true)                            
+    axios.get("https://mealplanner-backend.onrender.com/users").then((res) => setLoading(false)
+    .catch(err=>setLoading(false))
+    );
+    console.log(loading)
+    
     axios
       .get(
         `https://api.spoonacular.com/recipes/${id}/information?includeNutrition=false&apiKey=${API_KEY}`
       )
       .then((response) => setOneRecipe(response.data))
-      .then(res=>setLoading(false))
+     
       .catch((error) => {
-        setLoading(false)
+        
         console.log(error)});
   }
 
