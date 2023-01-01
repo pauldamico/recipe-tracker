@@ -53,12 +53,17 @@ const [loading, setLoading] = useState(false)
 
   //THIS GETS THE USER/RECIPEINFO WHEN STARTING
   useEffect(() => {       
-                                                
-    axios.get("https://mealplanner-backend.onrender.com/users").then((res) => setUsers((prev) => res.data)
- 
+    setLoading(true)                            
+    axios.get("https://mealplanner-backend.onrender.com/users").then((res) => {
+      setLoading(false)
+    
+    setUsers((prev) => res.data)
+ }
     );
-    axios.get("https://mealplanner-backend.onrender.com/recipes").then((res) => setSavedRecipes(res.data)
-  
+    axios.get("https://mealplanner-backend.onrender.com/recipes").then((res) =>{ 
+      setLoading(false)
+    setSavedRecipes(res.data)
+  }
     );
     count.current = count.current + 1; 
     }, [])
