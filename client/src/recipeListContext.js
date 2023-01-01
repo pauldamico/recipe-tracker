@@ -119,10 +119,12 @@ const [loading, setLoading] = useState(false)
   }
 
   function handleSubmit(event) {
-
-   
-    {!loading &&
     event.preventDefault();
+    setLoading(true)                            
+    axios.get("https://mealplanner-backend.onrender.com/users").then((res) =>     setLoading(false));
+   console.log(loading)
+    {!loading &&
+  
     getSearchResults();
     getNumberOfPages();
     navigate("/returned-recipes");}

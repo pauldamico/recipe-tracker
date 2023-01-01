@@ -74,7 +74,7 @@ function SearchForm() {
                 <br />
                 <br />
                 {loading && <section>Loading</section>}
-                <button className="btn btn-light">Search recipes</button>
+                {!loading &&<button className="btn btn-light">Search recipes</button>}
             </form>
         </div>
 
