@@ -149,7 +149,9 @@ const [loading, setLoading] = useState(false)
 
     axios
       .post(`https://mealplanner-backend.onrender.com/recipes/${userId}`, postedRecipe)
-      .then((res) => console.log(res.data));
+      .then((res) => {console.log(res.data)
+        setLoading(false)
+      });
     navigate("/");
   }
 
