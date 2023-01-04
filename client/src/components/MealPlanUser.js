@@ -25,6 +25,7 @@ export default function MealPlanUser(props) {
       );
     props.showUser();
   }
+  props.updateSelectUser(props.name)
 console.log(props)
 
   return (

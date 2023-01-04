@@ -6,6 +6,7 @@ import axios from "axios";
 
 export default function MealPlan() {
   const { users, savedRecipes } = useContext(RecipeListContext);
+
   const [showList, setShowList] = useState(false);
   const [currentUserInfo, setCurrentUserInfo] = useState({
     sundayBreakfast: {title: "",img: "",recipe: ""},
@@ -30,7 +31,8 @@ export default function MealPlan() {
     saturdayLunch: {title: "",img: "",recipe: ""},
     saturdayDinner: {title: "",img: "",recipe: ""},
   });
-
+  const [selectedUser, setSelectedUser] = useState("-- Select a User --")
+  console.log(currentUserInfo)
   function showUser() {
     setShowList(!showList);
   }
@@ -72,10 +74,14 @@ export default function MealPlan() {
     .catch((err) => console.log(err));
   };
 
+  function updateSelectUser (name){
+    setSelectedUser(name)
+  }
 
   //GRABS THE SPECIFIED USER AND UPDATES STATE (updateUserInfo) WITH ITS DATA
   const chooseUser = users.map((user) => (
     <MealPlanUser
+    updateSelectUser={updateSelectUser}
       key={user._id}
       updateUserInfo={updateUserInfo}
       user={user}
@@ -90,7 +96,7 @@ export default function MealPlan() {
       <div className="row d-flex justify-content-center">
       <div className="col-auto">
         <div>
-      <div className= "meal-plan-select-user-div" onClick={showUser}>-- Select a User --
+      <div className= "meal-plan-select-user-div" onClick={showUser}>{selectedUser}
       
       {showList && <div >     
         {chooseUser}</div>}
