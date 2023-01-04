@@ -87,6 +87,7 @@ const [loading, setLoading] = useState(false)
         `https://api.spoonacular.com/recipes/complexSearch?query=${formData.search}&cuisine=${formData.cuisine}&diet=${formData.diet}&intolerances=${formData.intolerances}&number=${recipesPerPage}&offset=${offset}&apiKey=${API_KEY}`
       )
       .then((response) => setListData(response.data.results))
+      .then(setLoading(false))
       .catch((error) => console.log(error));
   }, [offset]);
 

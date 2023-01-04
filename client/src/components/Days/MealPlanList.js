@@ -12,7 +12,7 @@ const [recipeToggle, setRecipeToggle] = useState(false)
 function toggler (){
   setToggle(!toggle)
 }
-console.log(props)
+
 function showRecipeToggler (){
 setRecipeToggle(!recipeToggle)
 }

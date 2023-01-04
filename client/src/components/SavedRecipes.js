@@ -12,15 +12,15 @@ function SavedRecipes() {
         { label: users[2]?.name, value: users[2]?.name, id: users[2]?._id }
     ]
 
-    const [user, setUser] = useState(`${users[0].name}`)
+    const [user, setUser] = useState(`${users[0]?.name}`)
     // console.log(user)
 
     let userId
-    if (user === users[0].name) {
+    if (user === users[0]?.name) {
         userId = users[0]._id
-    } else if (user === users[1].name) {
+    } else if (user === users[1]?.name) {
         userId = users[1]._id
-    } else if (user === users[2].name) {
+    } else if (user === users[2]?.name) {
         userId = users[2]._id
     }
 
