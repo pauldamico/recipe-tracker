@@ -53,23 +53,29 @@ const [loading, setLoading] = useState(false)
 
   //THIS GETS THE USER/RECIPEINFO WHEN STARTING
   useEffect(() => {       
-    setLoading(true)                            
-    axios.get("https://mealplanner-backend.onrender.com/users").then((res) => {
-      setLoading(false)
     
+    setLoading(true)      
+                      
+    axios.get("https://mealplanner-backend.onrender.com/users").then((res) => {
+      setLoading(false) 
     setUsers((prev) => res.data)
  }
-    );
-    axios.get("https://mealplanner-backend.onrender.com/recipes").then((res) =>{ 
-      setLoading(false)
+    )
+      .catch(err=>setLoading(true))
+
+ 
+    axios.get("https://mealplanner-backend.onrender.com/recipes").then((res) =>{    
     setSavedRecipes(res.data)
   }
-    );
+  
+    )
+    .catch(err=>setLoading(true))
+    
     count.current = count.current + 1; 
     }, [])
 
 
-
+    console.log(loading)
 
 
   //NUMBER OF RESULTS WANTED PER PAGE
@@ -81,13 +87,14 @@ const [loading, setLoading] = useState(false)
   }, [offset])
 
   useEffect(() => {
- 
+
+
     axios
       .get(
         `https://api.spoonacular.com/recipes/complexSearch?query=${formData.search}&cuisine=${formData.cuisine}&diet=${formData.diet}&intolerances=${formData.intolerances}&number=${recipesPerPage}&offset=${offset}&apiKey=${API_KEY}`
       )
       .then((response) => setListData(response.data.results))
-      .then(setLoading(false))
+     
       .catch((error) => console.log(error));
   }, [offset]);
 
