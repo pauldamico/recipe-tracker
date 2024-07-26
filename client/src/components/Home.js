@@ -11,7 +11,7 @@ function Home() {
                     <SearchForm />
                 </div>
                 <div className="col-md-6 mx-auto d-none d-md-block">
-                    <img src="https://source.unsplash.com/2RrBE90w0T8" className="main-img img-responsive" alt="green and purple vegetables"/>
+                    <img src={require("../images/greenandpurple.jpg")} className="main-img img-responsive" alt="green and purple vegetables"/>
                 </div>
 
 
